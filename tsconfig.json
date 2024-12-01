@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "noEmitOnError": true,
+    "module": "ESNext",
+    "target": "ES2017",
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "paths": {
+      "@/*": ["./scripts/*"],
+    }
+  },
+  "include": ["scripts/**/*"],
+  "exclude": ["node_modules"]
+}
