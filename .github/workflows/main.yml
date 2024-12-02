@@ -1,0 +1,31 @@
+name: 🚀 Deploy website on push
+on:
+  push:
+    branches:
+      - 'release'
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    environment: default
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v4
+
+    - name: 🌐 Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+
+    - name: 👨‍💻 Build Application
+      run: |
+        npm install
+        npm run build:prod
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ vars.ftp_server }}
+        username: ${{ vars.ftp_username }}
+        password: ${{ secrets.ftp_password }}
+        local-dir: ./build/
