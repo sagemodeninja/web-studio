@@ -2,7 +2,7 @@ name: 🚀 Deploy website on push
 on:
   push:
     branches:
-      - 'release'
+      - release
 jobs:
   web-deploy:
     name: 🎉 Deploy
@@ -12,13 +12,11 @@ jobs:
     - name: 🚚 Get latest code
       uses: actions/checkout@v4
 
-    - name: 🌐 Use Node.js
+    - name: 👨‍💻 Build Application
       uses: actions/setup-node@v4
       with:
         node-version: '20.x'
-
-    - name: 👨‍💻 Build Application
-      run: |
+    - run: |
         npm install
         npm run build:prod
     
